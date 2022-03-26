@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+<html>
+
+<head>
+    <meta charset="utf8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+        div {
+            display: inline-block;
+        }
+        h1 {
+            padding: 20px;
+            text-align: center;
+        }
+        body {
+            font-family: 'Noto Sans', sans-serif !important;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <h1>Ծրագրավորում III Երևան</h1>
+            </tr>
+            <tr>
+                <h1>Սուրեն Օրդյան</h1>
+            </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Գույն</th>
+                <th scope="col">Նկարագրություն</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td scope="row" style="background-color:rgb(96, 139, 96);"></td>
+                <td>Կանաչը խոտն է, որը բազմանում է 10 ցիկլը մեկ, մահանում է երբ նրան ուտում է խոտակերը, կամ նրան կոխկրտում է գիշատիչը</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td scope="row" style="background-color:rgb(250, 250, 127);"></td>
+                <td>Դեղինը խոտակերն է, որը բազմանում է 5 հատ խոտ ուտելուց հետո և մահանում է 30 հատ չուտելուց հետո, կամ
+                    երբ նրան ուտում է գիշատիչը, երբ նրան որսում է որսորդը, կամ երբ ՛՛Սևը՛՛ նրան վերածում է գիշատչի :</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td scope="row" style="background-color:rgb(187, 94, 94);"></td>
+                <td>Կարմիրը գիշատիչն է, որը բազմանում է 1 հատ խոտակեր ուտելուց հետո և մահանում է 30 հատ չուտելուց հետո, կամ
+                    երբ նրան որսում է որսորդը:</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td scope="row" style="background-color:rgb(247, 182, 63);"></td>
+                <td>Նարնջագույնը որսորդն է, որը չի բազմանում, որսում է գիշատչի կամ խոտակերի և ձեռք է բերում էներգիա,
+                    մահանում է 30 հատ գիշատիչ կամ խոտակեր չուտելուց հետո,  կամ երբ ՛՛Սևը՛՛ նրան վերածում է գիշատչի:</td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td scope="row" style="background-color:rgba(68, 68, 68, 0.986);"></td>
+                <td>Սևը անհայտ արարած է, որը չի բազմանում և ուտում է ներկայացվող բոլոր օբյեկտներին վերածելով նրանց գիշատչի, մահանում է երբ վերջանում է էներգիան:</td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="p5.js"></script>
+    <script src="script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+</body>
+
+</html>
+<!-- <html>
+
+<head>
+    <meta charset="utf8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+
+        div {
+            display: inline-block;
+        }
+
+        h1 {
+            padding: 20px;
+            text-align: center;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif !important;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <h1>Ծրագրավորում III Երևան</h1>
+            </tr>
+            <tr>
+                <h1>Անուն Ազգանուն</h1>
+            </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Գույն</th>
+                <th scope="col">Նկարագրություն</th>
+                <th scope="col">Ծնվել է</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td scope="row" style="background-color:green;"></td>
+                <td>Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ այրում է
+                    կրակը, կամ նրան կոխկրտում է գիշատիչը</td>
+                <td id="grassCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td scope="row" style="background-color:orange;"></td>
+                <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ
+                    երբ նրան ուտում է գիշատիչը, կամ երբ նրան այրում է կրակը:</td>
+                <td id="grassEaterCount"></td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="p5.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html> -->
