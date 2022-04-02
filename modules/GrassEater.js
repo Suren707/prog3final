@@ -1,10 +1,13 @@
 
+var Lifeform = require("./Lifeform");
 
-class GrassEater {
+
+module.exports = class GrassEater extends Lifeform {
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.energy = 30;
+        super(x, y,);
+        this.life = 8;
+    }
+    getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -16,21 +19,84 @@ class GrassEater {
             [this.x + 1, this.y + 1]
         ];
     }
-    chooseCell(char) {
-        let arr = [];
+    chooseCell(character) {
+        this.getNewCoordinates();
+        return super.chooseCell(character);
+    } 
+    mul() {
+        let emptyCells = this.chooseCell(0);
+        let newCell = random(emptyCells);
 
-        for (let index = 0; index < this.directions.length; index++) {
-            let x = this.directions[index][0];
-            let y = this.directions[index][1];
+        if (newCell) {
+            let x = newCell[0];
+            let y = newCell[1];
+            matrix[y][x] = 2;
+            let grassEater = new GrassEater(x, y);
+            grassEaterArr.push(grassEater);
+            this.life = 5;
+        }
+        if (weath == "winter") {
+            this.energy -= 4;
+            this.multiply -= 4;
+        }
+        if (weath == "summer") {
+            this.energy += 2;
+            this.multiply += 2;
+        }
+    }
+    eat() {
+        let emptyCells = this.chooseCell(1);
+        let newCell = random(emptyCells);
 
-            if (x >= 0 && y >= 0 && x < matrix[0].length && y < matrix.length) {
-                if (matrix[y][x] == char) {
-                    arr.push(this.directions[index])
+        if (newCell) {
+
+            this.life++;
+            let x = newCell[0];
+            let y = newCell[1];
+
+            matrix[y][x] = 2;
+            matrix[this.y][this.x] = 0;
+
+            for (let i in grassArr) {
+                if (grassArr[i].x == x && grassArr[i].y == y) {
+                    grassArr.splice(i, 1)
                 }
             }
+            this.x = x;
+            this.y = y;
 
+            if (this.life >= 13) {
+                this.mul();
+            }
         }
+        else {
+            this.move()
+        }
+    }
+    move() {
+        this.life--;
+        let emptyCells = this.chooseCell(0);
+        let newCell = random(emptyCells);
 
-        return arr;
+        if (newCell) {
+            let x = newCell[0];
+            let y = newCell[1];
+            matrix[y][x] = 2;
+            matrix[this.y][this.x] = 0;
+            this.y = y;
+            this.x = x;
+        }
+        if (this.life < 0) {
+            this.die();
+        }
+    }
+    die() {
+        matrix[this.y][this.x] = 0;
+
+        for (let i in grassEaterArr) {
+            if (grassEaterArr[i].x == this.x && grassEaterArr[i].y == this.y) {
+                grassEaterArr.splice(i, 1)
+            }
+        }
     }
 }

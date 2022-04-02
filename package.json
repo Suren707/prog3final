@@ -1,16 +1,28 @@
-
 {
   "name": "prog3",
   "version": "1.0.0",
   "description": "As an example of final project Programming 3",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "ananun",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
-    "socket.io": "^2.2.0"
-  }
+    "express": "^4.17.3",
+    "socket.io": "^2.4.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Suren707/prog3final.git"
+  },
+  "keywords": [
+    "^C"
+  ],
+  "bugs": {
+    "url": "https://github.com/Suren707/prog3final/issues"
+  },
+  "homepage": "https://github.com/Suren707/prog3final#readme"
 }

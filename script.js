@@ -1,6 +1,6 @@
 
 function setup() {
-    var weath = 'winter'
+    var weath = 'summer'
     var socket = io();
 
     var side = 30;
@@ -24,7 +24,11 @@ function setup() {
        
         matrix = data.matrix;
         grassCountElement.innerText = data.grassCounter;
-       
+        grassEaterCountElement.innerText = data.grassEaterCounter;
+        predatorCountElement.innerText = data.predatorCounter;
+        killerCountElement.innerText = data.killerCounter;
+        blackCountElement.innerText = data.blackCounter;
+
         createCanvas(matrix[0].length * side, matrix.length * side)
         
         background('#acacac');
@@ -70,7 +74,47 @@ function setup() {
         }
     }
 }
+socket.on('send matrix', nkarel)
 
+
+
+function kill() {
+    socket.emit("kill")
+}
+function addGrass() {
+    socket.emit("add grass")
+}
+function addGrassEater() {
+    socket.emit("add grassEater")
+}
+function addPredator() {
+    socket.emit("add predator")
+}
+function addKiller() {
+    socket.emit("add killer")
+}
+function addBlack() {
+    socket.emit("add black")
+}
+
+
+
+function winterFunc() {
+    weath = "winter"
+}
+function summerFunc() {
+    weath = "summer"
+}
+function springFunc() {
+    weath = "spring"
+}
+function autumnFunc() {
+    weath = "autumn"
+}
+
+function lightning() {
+    socket.emit("createLightning")
+}
 
 
     

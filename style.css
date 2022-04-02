@@ -1,0 +1,69 @@
+
+#killBtt{
+    background-color: #FF0044;
+    font-weight: bold;
+    height: 28px;
+    border-radius: 10%;
+    border : 1px solid #FF0044
+}
+
+#grassbtt{
+    background-color: #73FF00;
+    font-weight: bold;
+    height: 28px;
+    border-radius: 10%;
+    border : 1px solid #73FF00
+}
+#grassEaterbtt{
+    background-color: yellow;
+    font-weight: bold;
+    height: 28px;
+    border-radius: 10%;
+    border : 1px solid yellow
+}
+#predatorbtt{
+    background-color: red;
+    font-weight: bold;
+    height: 28px;
+    border-radius: 10%;
+    border : 1px solid red
+}
+#killerbtt{
+    background-color: #ffc107;
+    font-weight: bold;
+    height: 28px;
+    border-radius: 10%;
+    border : 1px solid #ffc107
+}
+#balckbtt{
+    background-color: #343a40;
+    font-weight: bold;
+    height: 28px;
+    border-radius: 10%;
+    border : 1px solid #343a40
+}
+
+
+
+#weather{
+   margin-left: 40px;
+}
+
+.weatherBtt{
+    display:block;
+    margin-top: 5px;
+}
+.weatherBtt{
+    background-color: #00D5FF;
+    font-weight: bold;
+    height: 28px;
+    border-radius: 10%;
+    border : 1px solid #00D5FF
+}
+#lightning{
+    background-color: #00D5FF;
+    font-weight: bold;
+    height: 28px;
+    border-radius: 10%;
+    border : 1px solid #00D5FF
+}
