@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     
     <meta charset="UTF-8">
     
-    
-    <title>Document</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="style.css">
     <style>
         canvas {
-            display: block;
+            /* display: block; */
             margin: 0 auto;
         }
         div {
@@ -24,6 +22,30 @@
         body {
             font-family: 'Noto Sans', sans-serif !important;
         }
+        .button {
+        border-radius: 4px;
+        background-color: lightskyblue;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 20px;
+        margin: 20px;
+        width: 530px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+      }
+      .Event{
+        background-color: lightblue;
+        border: none;
+        color: #FFFFFF;
+
+        padding: 20px;
+        text-align: center;
+        margin: 5px;
+
+        
+      }
     
     </style>
 </head>
@@ -48,74 +70,58 @@
                 <th scope="row">1</th>
                 <td scope="row" style="background-color:rgb(96, 139, 96);"></td>
                 <td>Կանաչը խոտն է, որը բազմանում է 10 ցիկլը մեկ, մահանում է երբ նրան ուտում է խոտակերը, կամ նրան կոխկրտում է գիշատիչը</td>
+                <td id="grassCount"></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td scope="row" style="background-color:rgb(250, 250, 127);"></td>
-                <td>Դեղինը խոտակերն է, որը բազմանում է 5 հատ խոտ ուտելուց հետո և մահանում է 30 հատ չուտելուց հետո, կամ
-                    երբ նրան ուտում է գիշատիչը, երբ նրան որսում է որսորդը, կամ երբ ՛՛Սևը՛՛ նրան վերածում է գիշատչի :</td>
+                <td>Դեղինը խոտակերն է, որը բազմանում է խոտ ուտելուց հետո և մահանում է,
+                    երբ նրան ուտում է գիշատիչը, գազանը, կամ երբ նրան ուտում է վիշապը :</td>
+                    <td id="grassEaterCount"></td>
             </tr>
             <tr>
                 <th scope="row">3</th>
                 <td scope="row" style="background-color:rgb(187, 94, 94);"></td>
-                <td>Կարմիրը գիշատիչն է, որը բազմանում է 1 հատ խոտակեր ուտելուց հետո և մահանում է 30 հատ չուտելուց հետո, կամ
-                    երբ նրան որսում է որսորդը:</td>
+                <td>Կարմիրը գիշատիչն է, որը բազմանում է հատ խոտակեր ուտելուց հետո և մահանում է,
+                    երբ նրան ուտում է գազանը, կամ երբ նրան ուտում է վիշապը:</td>
+                    <td id="predatorCount"></td>
             </tr>
             <tr>
                 <th scope="row">4</th>
-                <td scope="row" style="background-color:rgb(247, 182, 63);"></td>
-                <td>Նարնջագույնը որսորդն է, որը չի բազմանում, որսում է գիշատչի կամ խոտակերի և ձեռք է բերում էներգիա,
-                    մահանում է 30 հատ գիշատիչ կամ խոտակեր չուտելուց հետո,  կամ երբ ՛՛Սևը՛՛ նրան վերածում է գիշատչի:</td>
+                <td scope="row" style="background-color:rgb(0, 128, 128);"></td>
+                <td> Teal-ը  գազան է, որը բազմանում է խոտակեր կամ գիշատիչ ուտելուց հետո և ձեռք է բերում էներգիա,
+                    մահանում է երբ նրան ուտում է վիշապը:</td>
+                    <td id="beastCount"></td>
             </tr>
             <tr>
                 <th scope="row">5</th>
                 <td scope="row" style="background-color:rgba(68, 68, 68, 0.986);"></td>
-                <td>Սևը անհայտ արարած է, որը չի բազմանում և ուտում է ներկայացվող բոլոր օբյեկտներին վերածելով նրանց գիշատչի, մահանում է երբ վերջանում է էներգիան:</td>
+                <td> Սևը Վիշապն է, որը բազմանում է խոտակեր, գիշատիչ կամ գազան ուտելուց հետո մահանում է երբ վերջանում է էներգիան:</td>
+                <td id="dragonCount"></td>
             </tr>
+            <tr>
+               
+            </tr>
+           
         </tbody>
     </table>
+    <tr>
+    
+        <h1 class="Event"><span>Event List</span></h1>
+    </tr>
    
-    <div class="tools">
+    
 
-        <ul>
-            <li id="kill">
-                <button onclick="kill()" id="killBtt">Kill them all</button>
-            </li>
-            <li id="grass">
-                <button onclick="addGrass()" id="grassbtt">Add grass</button>
-            </li>
-            <li id="grassEater">
-                <button onclick="addGrassEater()" id="grassEaterbtt">Add grass eater</button>
-            </li>
-            <li id="predator">
-                <button onclick="addPredator()" id="predatorbtt">Add Predator</button>
-            </li>
-            <li id="bird">
-                <button onclick="addKiller()" id="birdbtt">Add Killer</button>
-            </li>
-            <li id="snake">
-                <button onclick="addBlack()" id="snakebtt">Add Black</button>
-            </li>
+       <button class="button" onclick="kill()"><span>Kill them all</span></button>
+       <button class="button" onclick="bomb()"><span>Bomb</span></button>
+       <button class="button" onclick="Lightning()"><span>Lightning</span></button>
+       <!-- <button class="button" onclick="addGrass()"><span>Add Grass</span></button>
+       <button class="button" onclick="addgrassEeater()"><span>Add GrassEater</span></button>
+       <button class="button" onclick="addPredator()"><span>Add Predator</span></button> -->
 
-        </ul>
-        <div id="weather">
-            <h1>Weather</h1>
-            <button class="weatherBtt" onclick="winterFunc()">Winter</button>
-
-            <button class="weatherBtt" onclick="springFunc()">Spring</button>
-
-            <button class="weatherBtt" onclick="summerFunc()">Summer</button>
-
-            <button class="weatherBtt" onclick="autumnFunc()">Autumn</button>
-        </div>
-        <div>
-            <button id="lightning" onclick="lightning()">lightning</button>
-        </div>
-    </div>
-    <script src="p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
-    <script src="style.css"></script>
 </body>
 
 </html>

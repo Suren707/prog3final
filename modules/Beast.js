@@ -1,12 +1,13 @@
-var Lifeform = require("./Lifeform");
+let Lifeform = require('./Lifeform')
 var random = require("./random.js");
 
-module.exports = class Predator extends Lifeform {
-    constructor(x, y, index) {
+module.exports = class Beast extends Lifeform {
+    constructor(x, y, index){
         super(x, y, index);
         this.energy = 30;
         this.directions = [];
     }
+
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -19,54 +20,54 @@ module.exports = class Predator extends Lifeform {
             [this.x + 1, this.y + 1]
         ];
     }
+
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character);
-    } 
-    
+    }
+
     mul() {
-        
         var found = this.chooseCell(0);
         var newCell = random(found);
 
-     
         if (newCell && this.energy >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];
-            matrix[newY][newX] = 3;
-            predatorArr.push(new Predator(newX, newY));
+            matrix[newY][newX] = 4;
+            beastArr.push(new Beast(newX, newY));
             this.energy = 5;
         }
     }
-    //     if(weath == "winter"){
-    //         this.energy -= 2;
-    //         this.multiply -= 2
-    //     }
-    //     if(weath == "summer"){
-    //         this.energy += 1;
-    //         this.multiply += 1
-    //     }
-    // }
-    die() {
-        for (var i in predatorArr) {
-            if (this.x == predatorArr[i].x && this.y == predatorArr[i].y) {
-              predatorArr.splice(i, 1);
-                break;
-            }
-        }
-        matrix[this.y][this.x] = 0;
-    }
 
-    eat() {
-       
-        var found = this.chooseCell(2);
+    move() {
+        var found = this.chooseCell(0);
         var newCell = random(found);
 
-        // let newCell = random(this.chooseCell(2));
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
-            matrix[newY][newX] = 3;
+            matrix[newY][newX] = 4;
+
+            matrix[this.y][this.x] = 0;
+
+            this.x = newX;
+            this.y = newY;
+        }
+        this.energy--;
+
+        if (this.energy < 0) {
+            this.die();
+        }
+    }
+
+    eat() {
+        var found = this.chooseCell(2,3);
+        var newCell = random(found);
+
+        if (newCell) {
+            var newX = newCell[0];
+            var newY = newCell[1];
+            matrix[newY][newX] = 4;
 
             matrix[this.y][this.x] = 0;
 
@@ -80,8 +81,15 @@ module.exports = class Predator extends Lifeform {
                     break;
             }
         }
-       
-            if (this.energy >= 15) {
+
+        for (var i in predatorArr) {
+            if (newX == predatorArr[i].x && newY == predatorArr[i].y) {
+                predatorArr.splice(i, 1);
+                break;
+        }
+    }
+        
+            if (this.energy >= 40) {
                 this.mul();
             }
         }
@@ -89,27 +97,14 @@ module.exports = class Predator extends Lifeform {
             this.move();
         }
     }
-    move() {
-        
-        var found = this.chooseCell(0);
-        var newCell = random(found);
 
-        // let newCell = random(this.chooseCell(0).concat(this.chooseCell(1)));
-        if (newCell) {
-            var newX = newCell[0];
-            var newY = newCell[1];
-            matrix[newY][newX] = 3;
-
-            matrix[this.y][this.x] = 0;
-
-            this.x = newX;
-            this.y = newY;
+    die() {
+        for (var i in beastArr) {
+            if (this.x == beastArr[i].x && this.y == beastArr[i].y) {
+              beastArr.splice(i, 1);
+                break;
+            }
         }
-        this.energy--;
-
-        if (this.energy < 0) {
-            this.die();
-        }
+        matrix[this.y][this.x] = 0;
     }
-    }
-
+}

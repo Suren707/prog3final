@@ -1,11 +1,12 @@
 
 var Lifeform = require("./Lifeform");
+var random = require("./random");
 
 
 module.exports = class GrassEater extends Lifeform {
-    constructor(x, y) {
-        super(x, y,);
-        this.life = 8;
+    constructor(x, y, index) {
+        super(x, y, index);
+        this.energy = 8;
     }
     getNewCoordinates() {
         this.directions = [
@@ -24,79 +25,89 @@ module.exports = class GrassEater extends Lifeform {
         return super.chooseCell(character);
     } 
     mul() {
-        let emptyCells = this.chooseCell(0);
-        let newCell = random(emptyCells);
+        var found = this.chooseCell(0);
+        var newCell = random(found);
 
-        if (newCell) {
-            let x = newCell[0];
-            let y = newCell[1];
-            matrix[y][x] = 2;
-            let grassEater = new GrassEater(x, y);
-            grassEaterArr.push(grassEater);
-            this.life = 5;
-        }
-        if (weath == "winter") {
-            this.energy -= 4;
-            this.multiply -= 4;
-        }
-        if (weath == "summer") {
-            this.energy += 2;
-            this.multiply += 2;
+
+        if (newCell && this.energy >= 5) {
+            var newX = newCell[0];
+            var newY = newCell[1];
+            matrix[newY][newX] = 2;
+            grassEaterArr.push(new GrassEater(newX, newY));
+            this.energy = 5;
         }
     }
+    //     if (weath == "winter") {
+    //         this.energy -= 4;
+    //         this.multiply -= 4;
+    //     }
+    //     if (weath == "summer") {
+    //         this.energy += 2;
+    //         this.multiply += 2;
+    //     }
+    // }
     eat() {
-        let emptyCells = this.chooseCell(1);
-        let newCell = random(emptyCells);
+        var found = this.chooseCell(1);
+        var newCell = random(found);
+
 
         if (newCell) {
+            var newX = newCell[0];
+            var newY = newCell[1];
+            matrix[newY][newX] = 2;
 
-            this.life++;
-            let x = newCell[0];
-            let y = newCell[1];
-
-            matrix[y][x] = 2;
             matrix[this.y][this.x] = 0;
 
-            for (let i in grassArr) {
-                if (grassArr[i].x == x && grassArr[i].y == y) {
-                    grassArr.splice(i, 1)
-                }
-            }
-            this.x = x;
-            this.y = y;
+            this.x = newX;
+            this.y = newY;
+            this.energy++;
 
-            if (this.life >= 13) {
+            for (var i in grassArr) {
+                if (newX == grassArr[i].x && newY == grassArr[i].y) {
+                    grassArr.splice(i, 1);
+                    break;
+            }
+        }
+            if (this.energy >= 5) {
                 this.mul();
             }
         }
+
         else {
-            this.move()
+            this.move();
         }
     }
     move() {
-        this.life--;
-        let emptyCells = this.chooseCell(0);
-        let newCell = random(emptyCells);
+        
+        var found = this.chooseCell(0);
+        var newCell = random(found);
+
 
         if (newCell) {
-            let x = newCell[0];
-            let y = newCell[1];
-            matrix[y][x] = 2;
+            var newX = newCell[0];
+            var newY = newCell[1];
+            matrix[newY][newX] = 2;
+
             matrix[this.y][this.x] = 0;
-            this.y = y;
-            this.x = x;
+
+            this.x = newX;
+            this.y = newY;
         }
-        if (this.life < 0) {
+        this.energy--;
+
+        if (this.energy < 0) {
             this.die();
         }
     }
-    die() {
-        matrix[this.y][this.x] = 0;
 
-        for (let i in grassEaterArr) {
-            if (grassEaterArr[i].x == this.x && grassEaterArr[i].y == this.y) {
-                grassEaterArr.splice(i, 1)
+    die() {
+        for (var i in grassEaterArr) {
+            if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
+                grassEaterArr.splice(i, 1);
+                break;
             }
         }
+        matrix[this.y][this.x] = 0;
     }
 }
+
